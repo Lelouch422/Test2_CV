@@ -6,6 +6,10 @@ sift = cv.xfeatures2d.SIFT_create()
 
 #kp = sift.detect(gray,None)
 (kp, features) = sift.detectAndCompute(gray, None)
+print ('kp',kp)
+
+#kppt = np.float32([k.pt for k in kp])
+#print ('kppt',kppt)
 
 img = cv.drawKeypoints(gray,kp,img)
 #cv.drawKeypoints(gray,kp,img)
@@ -26,6 +30,16 @@ https://blog.csdn.net/amusi1994/article/details/79591205
 function = cv2.Function_Name_create()
 keypoints = function.detect(img, None)
 
+keypoint 数据结构
+https://www.cnblogs.com/cj695/p/4041399.html
+keypoint包含以下信息：
+angle：角度，表示关键点的方向
+class_id：用于图片分类，需自己设置
+octave：代表是从金字塔哪一层提取的得到的数据
+pt：关键点点的坐标
+response：响应程度，代表着该关键点how good，更确切的说，是该点角点的程度
+size：该点直径的大小
+
 # 注意显示之前要先将img2初始化
 img2 = img.copy()
 img2 = cv2.drawKeyPoints(img, keypoints, color=(0,255,0))
@@ -43,7 +57,7 @@ img2 = cv2.drawKeyPoints(img, keypoints, color=(0,255,0))
 
 '''
 import cv2 as cv
-import numpy as np
+#import numpy as np
 
 img = cv.imread('./img/home.jpg')
 
