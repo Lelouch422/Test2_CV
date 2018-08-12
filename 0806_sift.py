@@ -7,10 +7,17 @@ sift = cv.xfeatures2d.SIFT_create()
 #kp = sift.detect(gray,None)
 (kp, features) = sift.detectAndCompute(gray, None)
 print ('kp',kp)
+print ('features',features[0])
 
-#kppt = np.float32([k.pt for k in kp])
-#print ('kppt',kppt)
-
+#kppt = np.array([k.pt for k in kp]) #np.float32([k.pt for k in kp])
+#print (kppt)
+'''
+kppt=[]
+for k in kp:
+    kppt.append(k.pt)
+kpptA = np.array(kppt) #np.float32(kppt)
+print ('kppt',kpptA)
+'''
 img = cv.drawKeypoints(gray,kp,img)
 #cv.drawKeypoints(gray,kp,img)
 # cv2.drawKeypoints(I,kps,I,(0,255,255),flags=cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
@@ -39,6 +46,9 @@ octave：代表是从金字塔哪一层提取的得到的数据
 pt：关键点点的坐标
 response：响应程度，代表着该关键点how good，更确切的说，是该点角点的程度
 size：该点直径的大小
+
+features
+sift的特征，128维
 
 # 注意显示之前要先将img2初始化
 img2 = img.copy()
